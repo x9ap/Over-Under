@@ -125,7 +125,7 @@ def when_started1():
 
 def onevent_controller_1buttonL1_pressed_0():
     global SpeedMult, Start_Calibrated, MatchLoad, Expand
-    # Throttle Decrease
+    # Throttle Decrease when upper left trigger is pressed
     if SpeedMult > 0:
         SpeedMult = SpeedMult + -0.1
         controller_1.screen.clear_row(1)
@@ -136,7 +136,7 @@ def onevent_controller_1buttonL1_pressed_0():
 
 def onevent_controller_1buttonR1_pressed_0():
     global SpeedMult, Start_Calibrated, MatchLoad, Expand
-    # Throttle Increase
+    # Throttle Increase when upper right trigger is pressed
     if SpeedMult < 1:
         SpeedMult = SpeedMult + 0.1
         controller_1.screen.clear_row(1)
