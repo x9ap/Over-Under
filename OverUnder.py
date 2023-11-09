@@ -184,7 +184,7 @@ def when_started5():
         if controller_1.buttonY.pressing():
             while controller_1.buttonY.pressing():
                 wait(5, MSEC)
-            # Starts the Expansion
+            # Starts the Expansion of bars on outside
             Expand = True
             LeftExpand.set_velocity(10, PERCENT)
             RightExpand.set_velocity(10, PERCENT)
@@ -273,6 +273,7 @@ controller_1.buttonR1.pressed(onevent_controller_1buttonR1_pressed_0)
 # add 15ms delay to make sure events are registered correctly.
 wait(15, MSEC)
 
+#Thrread all tasks sync
 ws2 = Thread( when_started2 )
 ws3 = Thread( when_started3 )
 ws4 = Thread( when_started4 )
