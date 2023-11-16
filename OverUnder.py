@@ -125,7 +125,7 @@ def when_started1():
 
 def onevent_controller_1buttonL1_pressed_0():
     global SpeedMult, Start_Calibrated, MatchLoad, Expand
-    # Throttle Decrease when upper left trigger is pressed
+    # Throttle Decrease
     if SpeedMult > 0:
         SpeedMult = SpeedMult + -0.1
         controller_1.screen.clear_row(1)
@@ -136,7 +136,7 @@ def onevent_controller_1buttonL1_pressed_0():
 
 def onevent_controller_1buttonR1_pressed_0():
     global SpeedMult, Start_Calibrated, MatchLoad, Expand
-    # Throttle Increase when upper right trigger is pressed
+    # Throttle Increase
     if SpeedMult < 1:
         SpeedMult = SpeedMult + 0.1
         controller_1.screen.clear_row(1)
@@ -184,7 +184,7 @@ def when_started5():
         if controller_1.buttonY.pressing():
             while controller_1.buttonY.pressing():
                 wait(5, MSEC)
-            # Starts the Expansion of bars on outside
+            # Starts the Expansion
             Expand = True
             LeftExpand.set_velocity(10, PERCENT)
             RightExpand.set_velocity(10, PERCENT)
@@ -211,51 +211,6 @@ def when_started5():
             controller_1.screen.clear_row(2)
         wait(5, MSEC)
 
-def when_started3():
-    global SpeedMult, Start_Calibrated, MatchLoad, Expand
-    while not Start_Calibrated:
-        wait(5, MSEC)
-    while True:
-        if MatchLoad:
-            brain.screen.set_font(FontType.PROP60)
-            brain.screen.set_cursor(2, 2)
-            brain.screen.print("MATCH LOADING")
-            while MatchLoad:
-                brain.screen.set_pen_color(Color.RED)
-                brain.screen.clear_row(3)
-                brain.screen.set_cursor(brain.screen.row(), 1)
-                brain.screen.set_cursor(3, 9)
-                brain.screen.print(".")
-                if not MatchLoad:
-                    break
-                wait(1, SECONDS)
-                brain.screen.clear_row(3)
-                brain.screen.set_cursor(brain.screen.row(), 1)
-                brain.screen.set_cursor(3, 7)
-                brain.screen.print(".")
-                brain.screen.set_cursor(3, 11)
-                brain.screen.print(".")
-                if not MatchLoad:
-                    break
-                wait(1, SECONDS)
-                brain.screen.clear_row(3)
-                brain.screen.set_cursor(3, 7)
-                brain.screen.print(".")
-                brain.screen.set_cursor(3, 9)
-                brain.screen.print(".")
-                brain.screen.set_cursor(3, 11)
-                brain.screen.print(".")
-                if not MatchLoad:
-                    break
-                wait(1, SECONDS)
-                wait(5, MSEC)
-        else:
-            brain.screen.clear_row(2)
-            brain.screen.set_cursor(brain.screen.row(), 1)
-            brain.screen.clear_row(3)
-            brain.screen.set_cursor(brain.screen.row(), 1)
-        wait(5, MSEC)
-
 def when_started4():
     global SpeedMult, Start_Calibrated, MatchLoad, Expand
     while not Start_Calibrated:
@@ -273,9 +228,7 @@ controller_1.buttonR1.pressed(onevent_controller_1buttonR1_pressed_0)
 # add 15ms delay to make sure events are registered correctly.
 wait(15, MSEC)
 
-#Thrread all tasks sync
 ws2 = Thread( when_started2 )
-ws3 = Thread( when_started3 )
 ws4 = Thread( when_started4 )
 ws5 = Thread( when_started5 )
 when_started1()
